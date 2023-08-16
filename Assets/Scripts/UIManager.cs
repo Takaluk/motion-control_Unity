@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
 {
     public Transform sliceableParentTransform;
     public Transform hullParentTransform;
-
-    public void ResetObjects()
+    public Transform bodyTransform;
+    public void OnResetButton()
     {
 
         for (int i = 0; i < hullParentTransform.childCount; i++)
@@ -28,5 +30,10 @@ public class UIManager : MonoBehaviour
                 childTransform.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void OnSliderEvent(float value)
+    {
+        bodyTransform.rotation = Quaternion.Euler(90f, value, 0f);
     }
 }

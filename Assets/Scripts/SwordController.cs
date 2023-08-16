@@ -14,7 +14,6 @@ public class SwordController : MonoBehaviour
     public float swingThreshold = 1.0f;
     public float swingTerm = 0.5f;
     private float lastSwingTime;
-    public float sliceTerm;
 
     private void Awake() {
         audioPlayer = GetComponent<AudioSource>();
@@ -31,7 +30,7 @@ public class SwordController : MonoBehaviour
             }
         }
 
-        if (Time.time - lastSwingTime < sliceTerm)
+        if (Time.time - lastSwingTime < swingTerm)
         {
             sliceObject.ObejctSlice();
         }
