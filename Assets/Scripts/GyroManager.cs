@@ -22,7 +22,6 @@ public class GyroManager : MonoBehaviour
         }
     }
     #endregion
-    // Start is called before the first frame update
     private Gyroscope gyro;
     private Quaternion rotation;
     private Vector3 acceleration;

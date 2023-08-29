@@ -19,20 +19,4 @@ public class SwordController : MonoBehaviour
         audioPlayer = GetComponent<AudioSource>();
         sliceObject = GetComponent<SliceObject>();
     }
-
-    public void Swing() {
-        if (GyroManager.Instance.gyroActive && GyroManager.Instance.GetGyroAcceleration().x > swingThreshold)
-        {
-            if (Time.time >= lastSwingTime + swingTerm)
-            {
-                lastSwingTime = Time.time;
-                audioPlayer.PlayOneShot(normSwingSound);
-            }
-        }
-
-        if (Time.time - lastSwingTime < swingTerm)
-        {
-            sliceObject.ObejctSlice();
-        }
-    }
 }

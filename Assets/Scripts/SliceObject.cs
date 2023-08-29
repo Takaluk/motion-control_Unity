@@ -10,30 +10,29 @@ public class SliceObject : MonoBehaviour
     public GameObject hullParentObject;
     public VelocityEstimator velocityEstimator;
     public LayerMask sliceableLayer;
+    public AudioClip sliceSound;
+    private AudioSource audioSource;
 
     public Material corssSectionMaterial;
     public float cutForce = 2000f;
-    public float cutDelay;
-    private bool isOnCutDelay;
-    // Start is called before the first frame update
+    public float cutDelay=0.4f;
+    private float lastCutTime = 0;
 
-    // Update is called once per frame
+    public void Start()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
     public void ObejctSlice()
     {
         bool hasHit = Physics.Linecast(startSlicePoint.position, endSlicePoint.position, out RaycastHit hit, sliceableLayer);
-        if (!isOnCutDelay && hasHit)
+        if (Time.time >= lastCutTime + cutDelay &&  hasHit)
         {
-            isOnCutDelay = true;
+            lastCutTime = Time.time;
             GameObject target = hit.transform.gameObject;
             Slice(target);
-            StartCoroutine(CutDelay());
+            audioSource.PlayOneShot(sliceSound);
         }
-    }
-
-    IEnumerator CutDelay()
-    {
-        yield return new WaitForSeconds(cutDelay);
-        isOnCutDelay = false;
     }
 
     public void Slice(GameObject target)

@@ -5,8 +5,7 @@ public class Arm : MonoBehaviour
     public SliceObject sliceObject;
     public float swingThreshold = 1.0f;
     public float swingTerm = 0.5f;
-
-    private float lastSwingTime;
+    private float lastSwingTime = 0f;
 
     private void Start()
     {
@@ -22,7 +21,6 @@ public class Arm : MonoBehaviour
             if (GyroManager.Instance.GetGyroAcceleration().x > swingThreshold)
             {
                 lastSwingTime = Time.time;
-                print("called");
             }
         }
         else
