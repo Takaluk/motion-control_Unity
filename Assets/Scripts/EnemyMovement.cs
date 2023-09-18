@@ -12,7 +12,6 @@ public class EnemyMovement : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip[] footStepSounds;
-    public AudioClip[] attackSounds;
     public float stepFrequency;
     private float lastStepTime = 0;
 

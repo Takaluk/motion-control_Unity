@@ -10,18 +10,13 @@ public class SliceObject : MonoBehaviour
     public GameObject hullParentObject;
     public VelocityEstimator velocityEstimator;
     public LayerMask sliceableLayer;
-    public AudioClip sliceSound;
-    private AudioSource audioSource;
+    public AudioClip[] sliceSounds;
+    public AudioSource audioSource;
 
     public Material corssSectionMaterial;
     public float cutForce = 2000f;
     public float cutDelay=0.4f;
     private float lastCutTime = 0;
-
-    public void Start()
-    {
-        audioSource = gameObject.AddComponent<AudioSource>();
-    }
 
     public void ObejctSlice()
     {
@@ -31,7 +26,8 @@ public class SliceObject : MonoBehaviour
             lastCutTime = Time.time;
             GameObject target = hit.transform.gameObject;
             Slice(target);
-            audioSource.PlayOneShot(sliceSound);
+            audioSource.transform.position = target.transform.position;
+            audioSource.PlayOneShot(sliceSounds[Random.Range(0, sliceSounds.Length)]);
         }
     }
 

@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class SurviveUIManager : MonoBehaviour
 {
 
-    public Text scoreText; // 점수 표시용 텍스트
-    public GameObject gameoverUI; // 게임 오버시 활성화할 UI 
+    public Text scoreText; 
+    public Text BestScoreText;
+    public GameObject gameoverUI; 
 
     public void OnRestartButton()
     {
@@ -24,6 +25,11 @@ public class SurviveUIManager : MonoBehaviour
     public void UpdateScoreText(int newScore)
     {
         scoreText.text = "Score : " + newScore;
+    }
+
+    public void UpdateBestScoreText(int BestScore)
+    {
+        BestScoreText.text = "Best Score : " + BestScore;
     }
 
     public void SetActiveGameoverUI(bool active)

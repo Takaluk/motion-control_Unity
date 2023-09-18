@@ -48,7 +48,7 @@ public class ArmSurvive : MonoBehaviour
                         {
                             target.Die();
                         }
-                        //else에 허공베는소리 추가
+                        //else 허공베는소리
                     }
                 }
             }
